@@ -1,0 +1,16 @@
+(define twist (l)
+	(if (null? l)
+		l
+		(if (atom? (car l))
+			(append (twist (cdr l) ) (list1 (car l)) )
+			(append (twist (cdr l) ) (list1 (twist (car l)) ) )
+		)
+	)
+)
+
+(equal? (twist '(1 2 3 4 5)) '(5 4 3 2 1))
+(equal? (twist '(1 2 (3 4 5))) '((5 4 3) 2 1))
+(equal? (twist '(1 (2 3 (4 5)))) '(((5 4) 3 2) 1))
+(equal? (twist '(1)) '(1))
+(equal? (twist '(1 0 1)) '(1 0 1))
+(equal? (twist '(1 (2 (3 (4 (5)))))) '(((((5) 4) 3) 2) 1))

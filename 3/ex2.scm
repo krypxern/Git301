@@ -1,0 +1,15 @@
+(define divides (n m) 
+	(not (= (mod m n) 0))
+)
+
+(define remove-multiples-too (n l)
+	(filter ((curry divides) n) l)
+)
+
+(+ 1234 8765)
+(equal? '() (remove-multiples-too 1 '(1 2 3 4 5)))
+(equal? '(1 3 5) (remove-multiples-too 2 '(1 2 3 4 5)))
+(equal? '() (remove-multiples-too 3 '(3 3 3 3 3)))
+(equal? '(3 3 3 3 3) (remove-multiples-too 4 '(3 3 3 3 3)))
+(equal? '(1 1 1) (remove-multiples-too 2 '(2 1 2 1 2 1 2)))
+(equal? '() (remove-multiples-too -1 '(-1 -1 -1)))
